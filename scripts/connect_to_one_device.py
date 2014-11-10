@@ -1,3 +1,9 @@
+# Example script of connecting to a OnePK Network Element
+#
+# Uses TLS Pinning to get around installing valid certs
+# Not recommended for production use. 
+# Read more: https://communities.cisco.com/message/156836#156836
+
 # Import the onePK Libraries  
 from onep.element.NetworkElement import NetworkElement  
 from onep.element.SessionConfig import SessionConfig
@@ -15,21 +21,13 @@ class PinningHandler(tlspinning.TLSUnverifiedElementHandler):
 config = SessionConfig(None)  
 config.set_tls_pinning('', PinningHandler(''))  
 config.transportMode = SessionConfig.SessionTransportMode.TLS  
-ne = NetworkElement('10.211.55.200', 'HelloWorld')  
-ne.connect('admin', 'admin', config)  
+ne = NetworkElement('1.1.1.1', 'App_Name')  
+ne.connect('username', 'password', config)  
 
 try:  
 	# Print the information of the Network Element  
 	print ne
 
-	print '\n'
-
-	#Create Interface Filter and print interface list
-	if_filter = InterfaceFilter(interface_type=1)
-	for interface in ne.get_interface_list(if_filter):
-		print interface.get_config()
-		print '\n%s: %s\n' % (interface.name, interface.get_address_list())
-	  
 finally:
 	# Finally have the application disconnect from the Network Element  
 	ne.disconnect() 
