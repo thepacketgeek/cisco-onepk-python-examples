@@ -9,6 +9,12 @@
 # Dependencies:
 # onep
 # ipaddress
+# 
+# Network Element Config
+# In order to use onep with a Cisco IOS device, you must enable onep
+# 
+# HostName(config)# onep
+# HostName(config-onep)# transport mode tls disable-remotecert-validation
 #############
 
 # Import the onePK Libraries  
