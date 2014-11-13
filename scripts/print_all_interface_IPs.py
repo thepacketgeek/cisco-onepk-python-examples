@@ -30,3 +30,11 @@ finally:
 	# Finally have the application disconnect from the Network Element  
 	ne.disconnect() 
 
+
+
+## Output:
+# thePacketGeek$ python print_all_interface_IPs.py 10.211.55.200 admin admin
+# Loopback0: ['1.1.1.1', '2001:100::1', 'FE80::AA:BB:CC:DD']
+# GigabitEthernet1: ['10.211.55.200']
+# GigabitEthernet2: ['192.168.56.1', '2001:56::1', 'FE80::111:222:333:444']
+# GigabitEthernet3: []

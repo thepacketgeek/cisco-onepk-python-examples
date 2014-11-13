@@ -46,3 +46,20 @@ finally:
 	# Finally have the application disconnect from the Network Element  
 	ne.disconnect() 
 
+
+
+## Output:
+# thePacketGeek$ python print_routing_table.py 10.211.55.200 admin admin
+# 0.0.0.0/0                 Type: STATIC       AD: 1    Metric: 0   Next-Hop: 10.211.55.1
+# 0.0.0.0/0                 Type: STATIC       AD: 1    Metric: 0   Next-Hop: 10.211.55.1
+# 1.1.1.1/32                Type: LOCAL        AD: 0    Metric: 0   Next-Hop: Loopback0
+# 10.211.55.0/24            Type: CONNECTED    AD: 0    Metric: 0   Next-Hop: GigabitEthernet1
+# 10.211.55.200/32          Type: LOCAL        AD: 0    Metric: 0   Next-Hop: GigabitEthernet1
+# 172.16.0.0/16             Type: STATIC       AD: 1    Metric: 0   Next-Hop: 192.168.56.10
+# 192.168.56.0/24           Type: CONNECTED    AD: 0    Metric: 0   Next-Hop: GigabitEthernet2
+# 192.168.56.1/32           Type: LOCAL        AD: 0    Metric: 0   Next-Hop: GigabitEthernet2
+# 2001:56::/64              Type: CONNECTED    AD: 0    Metric: 0   Next-Hop: GigabitEthernet2
+# 2001:56::1/128            Type: LOCAL        AD: 0    Metric: 0   Next-Hop: GigabitEthernet2
+# 2001:100::/64             Type: CONNECTED    AD: 0    Metric: 0   Next-Hop: Loopback0
+# 2001:100::1/128           Type: LOCAL        AD: 0    Metric: 0   Next-Hop: Loopback0
+# FF00::/8                  Type: LOCAL        AD: 0    Metric: 0   Next-Hop: Null0
