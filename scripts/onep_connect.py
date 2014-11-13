@@ -13,6 +13,7 @@
 # Network Element Config
 # In order to use onep with a Cisco IOS device, you must enable onep
 # 
+# HostName(config)# username [username] privilege-level 15 secret [secret]
 # HostName(config)# onep
 # HostName(config-onep)# transport mode tls disable-remotecert-validation
 #############
