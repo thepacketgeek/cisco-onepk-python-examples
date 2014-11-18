@@ -17,10 +17,12 @@ class PinningHandler(tlspinning.TLSUnverifiedElementHandler):
    def handle_verify(self, host, hashtype, finger_print, changed):  
        return tlspinning.DecisionType.ACCEPT_ONCE  
   
-# Connection to my onePK enabled Network Element  
+# Setup a connection config with TSL pinning handler
 config = SessionConfig(None)  
 config.set_tls_pinning('', PinningHandler(''))  
 config.transportMode = SessionConfig.SessionTransportMode.TLS  
+
+# Connection to my onePK enabled Network Element  
 ne = NetworkElement('1.1.1.1', 'App_Name')  
 ne.connect('username', 'password', config)  
 
