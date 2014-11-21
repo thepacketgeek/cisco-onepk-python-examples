@@ -8,7 +8,6 @@
 #
 # Dependencies:
 # onep
-# ipaddress
 # 
 # Network Element Config
 # In order to use onep with a Cisco IOS device, you must enable onep
@@ -21,16 +20,13 @@
 # Import the onePK Libraries  
 from onep.element.NetworkElement import NetworkElement  
 from onep.element.SessionConfig import SessionConfig
-from onep.core.util import tlspinning  
+from onep.core.util import tlspinning, HostIpCheck  
 from onep.core.exception.OnepConnectionException import OnepConnectionException
-import ipaddress
   
 def connect(ne_addr, ne_username, ne_password):
 
 	# check to see if ne_addr is a valid IP(v6) address
-	try:
-		ipaddress.ip_address(unicode(ne_addr))
-	except ValueError:
+	if not (HostIpCheck(ne_addr).is_ipv4() or HostIpCheck(ne_addr).is_ipv6()):
 		raise ValueError('%s is not a valid IP address' % ne_addr)	
 
 	# TLS Connection (This is the TLS Pinning Handler)  
