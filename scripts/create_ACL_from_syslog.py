@@ -15,7 +15,7 @@ def create_dynamic_ace(sequence, permit, syslog):
     '''
 
     ip_addresses = [x for x in syslog.split(' ') if HostIpCheck(x.split('/')[0]).is_ipv4()]
-    protocol = [x for x in syslog.split(' ') if x in ['TCP', 'UDP', 'IP']]
+    protocol = [x for x in syslog.split(' ') if x in ['TCP', 'UDP', 'IP']][0]
 
     # Create ACE that matches the syslog addresses
     l3_ace = L3Ace(sequence, permit)
@@ -62,8 +62,11 @@ try:
     l3_acl.add_ace(l3_ace_20)
 
     # Apply the ACL to the interface
-    interface = syslog_message.split(' ')[:-1]
+    interface = ne.get_interface_by_name(syslog_message.split(' ')[-1])
     l3_acl.apply_to_interface(interface, Acl.Direction.ONEP_DIRECTION_IN)
+
+    print 'ACL created and applied to the %s interface' % interface.name
+
 
 finally:
     # End the onep session (ACL remains because we used a persistent lifetime)
